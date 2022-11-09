@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import IntegerField, Model, ManyToManyField
+from django.db.models import IntegerField, Model, ForeignKey
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
@@ -19,5 +19,5 @@ class Menu(models.Model):
             MaxValueValidator(5),
             MinValueValidator(1)
         ])
-    dish_category = ManyToManyField(Category)
-    dish_cuisine = ManyToManyField(Cuisine)
+    dish_category = ForeignKey(Category, on_delete=models.CASCADE,)
+    dish_cuisine = ForeignKey(Cuisine, on_delete=models.CASCADE,)
