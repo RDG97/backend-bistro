@@ -10,5 +10,9 @@ def get_menu(request):
 
 def get_all(request):
     data = list(Menu.objects.values())
-    print(data)
+    fart = []
+    for item in data:
+        fart.append(item)
+    print(fart)
+        
     return JsonResponse({ 'data': data })

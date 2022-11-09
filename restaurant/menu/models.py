@@ -24,3 +24,4 @@ class Menu(models.Model):
     dish_category = ForeignKey(Category, on_delete=models.CASCADE,)
     dish_cuisine = ForeignKey(Cuisine, on_delete=models.CASCADE,)
 
+
