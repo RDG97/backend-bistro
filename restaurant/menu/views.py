@@ -1,18 +1,14 @@
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, response
 from .models import Menu
 from django.db import models
 from .models import Category
+import json
 # Create your views here.
 def get_menu(request):
     data = list(Menu.objects.values())
     return JsonResponse({ 'data': data })
 
 def get_all(request):
-    data = list(Menu.objects.values())
-    fart = []
-    for item in data:
-        fart.append(item)
-    print(fart)
-        
-    return JsonResponse({ 'data': data })
+    data = [i.json() for i in Menu.objects.all()]
+    return HttpResponse(json.dumps(data), content_type="application/json")

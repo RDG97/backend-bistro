@@ -12,9 +12,7 @@ class Cuisine(models.Model):
 class Menu(models.Model):
     name = models.CharField(max_length=30)
     desc = models.CharField(max_length=150)
-    price = models.DecimalField(
-                            max_digits = 5,
-                            decimal_places = 2)
+    price = models.FloatField(null = True)
     spice = models.IntegerField(
                             default=1,
                             validators=[
@@ -24,4 +22,14 @@ class Menu(models.Model):
     dish_category = ForeignKey(Category, on_delete=models.CASCADE,)
     dish_cuisine = ForeignKey(Cuisine, on_delete=models.CASCADE,)
 
-
+    def json(self):
+        return {
+            'title': self.name,
+            'description': self.desc,
+            'price': self.price,
+            'cuisine': {
+                'title': self.dish_cuisine.type
+            },
+            'category': {
+                'title': self.dish_category.type
+            }}
