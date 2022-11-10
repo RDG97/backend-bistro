@@ -33,3 +33,5 @@ class Menu(models.Model):
             'category': {
                 'title': self.dish_category.type
             }}
+    def __str__(self):
+        return f"NAME: {self.name} DESCRIPTION: {self.desc}"
