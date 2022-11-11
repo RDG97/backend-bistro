@@ -5,9 +5,13 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 # Create your models here.
 class Category(models.Model):
     type = models.CharField(max_length=15)
+    def __str__(self):
+        return f"TYPE: {self.type}"
 
 class Cuisine(models.Model):
     type = models.CharField(max_length=15)
+    def __str__(self):
+        return f"TYPE: {self.type}"
 
 class Menu(models.Model):
     name = models.CharField(max_length=30)

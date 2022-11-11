@@ -12,3 +12,7 @@ def get_menu(request):
 def get_all(request):
     data = [i.json() for i in Menu.objects.all()]
     return HttpResponse(json.dumps(data), content_type="application/json")
+
+def test(request):
+    data = Menu.objects.select_related('dish_category').filter(dish_category_id=4)
+    return HttpResponse(json.dumps(data))
